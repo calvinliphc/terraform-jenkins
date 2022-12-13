@@ -21,15 +21,20 @@ data "terraform_remote_state" "gke" {
 }
 */
 
-data "tfe_outputs" "gke" {
-  organization = "PEACEHAVENCORP"
-  workspace = "terraform-jenkins-GKE-provision"
+data "terraform_remote_state" "gke" {
+  backend = "remote"
+  config = {
+    organization = "PEACEHAVENCORP"
+    workspaces = {
+      name = "terraform-jenkins-GKE-provision"
+    }
+  }
 }
 
 # Retrieve GKE cluster information
 provider "google" {
-  project = data.tfe_outputs.gke.outputs.project_id
-  region  = data.tfe_outputs.gke.outputs.region
+  project = data.terraform_remote_state.gke.outputs.project_id
+  region  = data.terraform_remote_state.gke.outputs.region
 }
 
 # Configure kubernetes provider with Oauth2 access token.
@@ -38,12 +43,12 @@ provider "google" {
 data "google_client_config" "default" {}
 
 data "google_container_cluster" "my_cluster" {
-  name     = data.tfe_outputs.gke.outputs.kubernetes_cluster_name
-  location = data.tfe_outputs.gke.outputs.region
+  name     = data.terraform_remote_state.gke.outputs.kubernetes_cluster_name
+  location = data.terraform_remote_state.gke.outputs.region
 }
 
 provider "kubernetes" {
-  host = data.tfe_outputs.gke.outputs.kubernetes_cluster_host
+  host = data.terraform_remote_state.gke.outputs.kubernetes_cluster_host
 
   token                  = data.google_client_config.default.access_token
   cluster_ca_certificate = base64decode(data.google_container_cluster.my_cluster.master_auth[0].cluster_ca_certificate)
