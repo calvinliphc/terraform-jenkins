@@ -1,6 +1,4 @@
 resource "helm_release" "jenkins" {
-  provider = helm.primary
-
   name       = "jenkins"
   repository = "https://charts.jenkins.io"
   chart      = "jenkins"
@@ -17,7 +15,6 @@ resource "helm_release" "jenkins" {
 }
 
 resource "kubernetes_namespace" "jenkins" {
-  provider = kubernetes.primary
   metadata {
     name = "jenkins"
 
