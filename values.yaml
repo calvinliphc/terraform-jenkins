@@ -1,0 +1,63 @@
+controller:
+  adminUsername: admin
+  adminPassword: admin
+
+  ingress:
+    enabled: true
+    hostName: "jenkins.yourcluster.com"
+
+  additionalPlugins:
+    - job-dsl:1.77
+    - permissive-script-security:0.6
+
+  javaOpts: '-Dpermissive-script-security.enabled=true'
+
+  JCasC:
+    defaultConfig: true
+    configScripts:
+      welcome-message: |
+        jenkins:
+          systemMessage: Welcome to Kube-Jenkins!
+      job-config: |
+        jobs:
+          - script: >
+              folder('testjobs')
+          - script: >
+              pipelineJob('testjobs/default-agent') {
+                definition {
+                  cps {
+                    script("""\
+                    pipeline {
+                      agent {
+                        kubernetes {
+                          yaml '''
+                            apiVersion: v1
+                            kind: Pod
+                            metadata:
+                              labels:
+                                purpose: jenkins-agent
+                            spec:
+                              containers:
+                              - name: postgres
+                                image: postgres:latest
+                                command:
+                                - cat
+                                tty: true
+                            '''
+                        }
+                      }
+                      stages {
+                        stage('Test it out') {
+                          steps {
+                            container('postgres') {
+                              sh 'pwd'
+                            }
+                          }
+                        }
+                      }
+                    }
+                    """.stripIndent())
+                    sandbox()
+                  }
+                }
+              }
