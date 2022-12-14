@@ -1,2 +1,2 @@
 project_id = "jenkins-deployment-test"
-region     = "us-west1"
+region     = "us-east4"
