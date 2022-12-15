@@ -1,3 +1,9 @@
+provider "helm" {
+  kubernetes {
+    config_path = "~/.kube/config"
+  }
+}
+
 resource "helm_release" "jenkins" {
   name       = "jenkins"
   repository = "https://charts.jenkins.io"
