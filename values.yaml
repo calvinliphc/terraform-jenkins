@@ -2,9 +2,8 @@ controller:
   adminUsername: admin
   adminPassword: admin
 
-  ingress:
-    enabled: true
-    hostName: "jenkins.yourcluster.com"
+  serviceType: NodePort
+
   JCasC:
     defaultConfig: true
     configScripts:
