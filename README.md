@@ -13,6 +13,8 @@ https://github.com/calvinliphc/terraform-jenkins
 
 ## Section 1: GCP - Google Kubernetes Engine (GKE)
 
+Follow the companion article for this project at: https://medium.com/@calvintianli/deploying-jenkins-to-kubernetes-on-the-cloud-aws-gcp-azure-using-terraform-f00096e929e
+
 Begin by following the tutorials below to use Terraform to set up a basic Kubernetes cluster on GKE. The first tutorial creates Terraform configurations for provisioning a GKE cluster, while the second tutorial contains a different set of configurations, placed in its own directory, which manages the existing GKE cluster.
 
 https://developer.hashicorp.com/terraform/tutorials/kubernetes/gke
