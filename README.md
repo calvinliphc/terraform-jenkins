@@ -1,15 +1,9 @@
 # terraform-jenkins
 
-This project aims to use Terraform to deploy Jenkins to each of the 3 main cloud providers (AWS, GCP, Azure).
+This project aims to use Terraform to deploy Jenkins to Kubernetes on each of the 3 main cloud providers (AWS, GCP, Azure) using their respective managed Kubernetes services.
 
 
 # Deploying Jenkins to Kubernetes on the Cloud (AWS, GCP, Azure) using Terraform
-
-This document describes the process of using Terraform to deploy Jenkins onto a Kubernetes cluster on each of the 3 major cloud providers’ managed Kubernetes services.
-
-Example code for this project can be found at:
-https://github.com/calvinliphc/terraform-jenkins
-
 
 ## Section 1: GCP - Google Kubernetes Engine (GKE)
 
