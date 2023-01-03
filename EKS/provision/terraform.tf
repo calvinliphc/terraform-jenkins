@@ -1,4 +1,10 @@
 terraform {
+  cloud {
+    organization = "PEACEHAVENCORP"
+    workspaces {
+      name = "terraform-jenkins-EKS-provision"
+    }
+  }
   required_providers {
     aws = {
       source  = "hashicorp/aws"

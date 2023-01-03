@@ -13,10 +13,12 @@ terraform {
 }
 
 data "terraform_remote_state" "eks" {
-  backend = "local"
-
+  backend = "remote"
   config = {
-    path = "../provision/terraform.tfstate"
+    organization = "PEACEHAVENCORP"
+    workspaces = {
+      name = "terraform-jenkins-EKS-provision"
+    }
   }
 }
 
