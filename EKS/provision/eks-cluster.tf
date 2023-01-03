@@ -54,4 +54,8 @@ module "eks" {
       ]
     }
   }
+
+  node_security_group_tags = {
+    "kubernetes.io/cluster/${local.cluster_name}" = null
+  }
 }
