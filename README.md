@@ -8,3 +8,7 @@ This project aims to use Terraform to deploy Jenkins to Kubernetes on each of th
 ## Section 1: GCP - Google Kubernetes Engine (GKE)
 
 Follow the companion article for this project at: https://medium.com/@calvintianli/deploying-jenkins-to-kubernetes-on-the-cloud-aws-gcp-azure-using-terraform-f00096e929e
+
+## Section 2: AWS - Elastic Kubernetes Service (EKS)
+
+Follow the companion article for this project at: https://medium.com/@calvintianli/deploying-jenkins-to-kubernetes-on-eks-aws-using-terraform-ce1cf5594687
